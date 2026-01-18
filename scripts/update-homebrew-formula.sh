@@ -48,5 +48,5 @@ sed -i.bak "s|version \".*\"|version \"${VERSION#v}\"|" "${FORMULA_PATH}"
 rm -f "${FORMULA_PATH}.bak"
 
 git add "${FORMULA_PATH}"
-git commit -m "Update nexus-cli to ${VERSION}"
+git -c user.name="EdgeOpslabs CI" -c user.email="ci@edgeopslabs.com" commit -m "Update nexus-cli to ${VERSION}"
 git push origin "${TAP_BRANCH}"
