@@ -43,9 +43,12 @@ EOF
 Type=Application
 Name=Nexus
 Exec=nexus
+Icon=nexus
 Terminal=true
 Categories=Development;
 EOF
+
+  cp -f "./packaging/appimage/nexus.svg" "${appdir}/nexus.svg"
 
   "${tool}" "${appdir}" "${out}"
 }

@@ -266,7 +266,7 @@ macOS (Homebrew tap):
 
 ```bash
 brew tap edgeopslabs/nexus
-brew install nexus
+brew install edgeopslabs/nexus/nexus-cli
 ```
 
 Linux (Snap):
