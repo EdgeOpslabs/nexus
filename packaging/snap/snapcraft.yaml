@@ -1,0 +1,19 @@
+name: nexus
+base: core22
+version: "0.0.1"
+summary: Nexus - the unified bridge for infrastructure context
+description: |
+  Nexus exposes infrastructure context to AI agents through MCP.
+grade: stable
+confinement: classic
+
+parts:
+  nexus:
+    plugin: dump
+    source: .
+    organize:
+      nexus: bin/nexus
+
+apps:
+  nexus:
+    command: bin/nexus

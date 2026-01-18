@@ -1,0 +1,35 @@
+server:
+  name: "Nexus"
+  version: "v0.0.1"
+  log_level: "info"
+  safe_mode: true
+modules:
+  kubernetes:
+    enabled: true
+    kubeconfig: "~/.kube/config"
+  aws:
+    enabled: false
+    region: "us-east-1"
+  prometheus:
+    enabled: false
+    url: "http://localhost:9090"
+  logs:
+    enabled: false
+    allow_paths: []
+    max_bytes: 262144
+    max_lines: 200
+  docker:
+    enabled: false
+    cli: "docker"
+    max_lines: 200
+  plugins:
+    enabled: false
+    dir: "plugins"
+    max_bytes: 262144
+    env: []
+policy:
+  allow_modules: []
+  deny_modules: []
+  allow_tools: []
+  deny_tools: []
+  confirm_tools: []

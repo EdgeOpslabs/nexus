@@ -1,0 +1,57 @@
+project_name: nexus
+
+builds:
+  - id: nexus
+    main: ./cmd/nexus
+    binary: nexus
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+
+archives:
+  - id: default
+    format: tar.gz
+    builds: [nexus]
+    name_template: "nexus_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+      - GUIDE.md
+      - ROADMAP.md
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+nfpms:
+  - id: packages
+    package_name: nexus
+    builds: [nexus]
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/local/bin
+    vendor: EdgeOps Labs
+    homepage: https://github.com/edgeopslabs/nexus-core
+    maintainer: EdgeOps Labs <support@edgeopslabs.com>
+    description: Nexus exposes infrastructure context to AI agents through MCP.
+    license: Apache-2.0
+
+appimages:
+  - id: nexus
+    builds: [nexus]
+    name_template: "nexus_{{ .Os }}_{{ .Arch }}"
+    description: Nexus exposes infrastructure context to AI agents through MCP.
+    homepage: https://github.com/edgeopslabs/nexus-core
+    license: Apache-2.0
+
+release:
+  draft: false
+  prerelease: false

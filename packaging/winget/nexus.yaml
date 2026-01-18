@@ -1,0 +1,15 @@
+PackageIdentifier: EdgeOpsLabs.Nexus
+PackageVersion: 0.0.1
+PackageName: Nexus
+Publisher: EdgeOps Labs
+License: Apache-2.0
+ShortDescription: Nexus exposes infrastructure context to AI agents through MCP.
+Installers:
+  - Architecture: x64
+    InstallerType: zip
+    InstallerUrl: https://github.com/edgeopslabs/nexus-core/releases/download/v0.0.1/nexus_windows_amd64.zip
+    InstallerSha256: REPLACE_WITH_SHA256
+    NestedInstallerType: exe
+    NestedInstallerFiles:
+      - RelativeFilePath: nexus.exe
+        PortableCommandAlias: nexus

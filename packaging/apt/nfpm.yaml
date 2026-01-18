@@ -1,0 +1,12 @@
+name: nexus
+arch: amd64
+platform: linux
+version: "0.0.1"
+section: default
+priority: optional
+maintainer: EdgeOps Labs <support@edgeopslabs.com>
+description: Nexus exposes infrastructure context to AI agents through MCP.
+license: Apache-2.0
+contents:
+  - src: ./nexus
+    dst: /usr/local/bin/nexus
