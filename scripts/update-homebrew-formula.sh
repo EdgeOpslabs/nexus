@@ -40,11 +40,33 @@ if [[ ! -f "${FORMULA_PATH}" ]]; then
   exit 1
 fi
 
-sed -i.bak "s|url \".*nexus_darwin_arm64.tar.gz\"|url \"https://github.com/${RELEASE_REPO}/releases/download/${VERSION}/nexus_darwin_arm64.tar.gz\"|g" "${FORMULA_PATH}"
-sed -i.bak "s|sha256 \".*\"|sha256 \"${SHA_ARM64}\"|g" "${FORMULA_PATH}"
-sed -i.bak "0,/url \".*nexus_darwin_amd64.tar.gz\"/s|url \".*nexus_darwin_amd64.tar.gz\"|url \"https://github.com/${RELEASE_REPO}/releases/download/${VERSION}/nexus_darwin_amd64.tar.gz\"|" "${FORMULA_PATH}"
-sed -i.bak "0,/sha256 \".*\"/s|sha256 \".*\"|sha256 \"${SHA_AMD64}\"|" "${FORMULA_PATH}"
-sed -i.bak "s|version \".*\"|version \"${VERSION#v}\"|" "${FORMULA_PATH}"
+python3 - <<PY
+import re
+from pathlib import Path
+
+path = Path("${FORMULA_PATH}")
+text = path.read_text()
+
+arm_url = f"https://github.com/${RELEASE_REPO}/releases/download/${VERSION}/nexus_darwin_arm64.tar.gz"
+amd_url = f"https://github.com/${RELEASE_REPO}/releases/download/${VERSION}/nexus_darwin_amd64.tar.gz"
+arm_sha = "${SHA_ARM64}"
+amd_sha = "${SHA_AMD64}"
+version = "${VERSION#v}"
+
+text = re.sub(
+    r"(if Hardware::CPU\.arm\?\s*\n\s*url \")[^\"]+(\")\s*\n\s*sha256 \"[^\"]+\"",
+    rf"\\1{arm_url}\\2\n    sha256 \"{arm_sha}\"",
+    text,
+)
+text = re.sub(
+    r"(else\s*\n\s*url \")[^\"]+(\")\s*\n\s*sha256 \"[^\"]+\"",
+    rf"\\1{amd_url}\\2\n    sha256 \"{amd_sha}\"",
+    text,
+)
+text = re.sub(r"(version \")[^\"]+(\")", rf"\\1{version}\\2", text)
+
+path.write_text(text)
+PY
 rm -f "${FORMULA_PATH}.bak"
 
 git add "${FORMULA_PATH}"
