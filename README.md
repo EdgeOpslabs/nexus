@@ -1,9 +1,9 @@
 # Nexus
 
-[![Release](https://img.shields.io/github/v/release/edgeopslabs/nexus-core?display_name=tag&sort=semver)](https://github.com/edgeopslabs/nexus-core/releases)
-[![Build](https://img.shields.io/github/actions/workflow/status/edgeopslabs/nexus-core/ci.yml?branch=main)](https://github.com/edgeopslabs/nexus-core/actions)
-[![License](https://img.shields.io/github/license/edgeopslabs/nexus-core)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/edgeopslabs/nexus-core)](go.mod)
+[![Release](https://img.shields.io/github/v/release/edgeopslabs/nexus?display_name=tag&sort=semver)](https://github.com/edgeopslabs/nexus/releases)
+[![Build](https://img.shields.io/github/actions/workflow/status/edgeopslabs/nexus/ci.yml?branch=main)](https://github.com/edgeopslabs/nexus/actions)
+[![License](https://img.shields.io/github/license/edgeopslabs/nexus)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/edgeopslabs/nexus)](go.mod)
 
 Nexus is the unified bridge between AI agents and real infrastructure context. It runs as a single binary inside your environment (laptop or cluster) and exposes safe, read‑only or policy‑governed capabilities over MCP so agents can troubleshoot and operate without manual log dumps.
 
