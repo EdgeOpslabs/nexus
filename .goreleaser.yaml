@@ -45,14 +45,6 @@ nfpms:
     description: Nexus exposes infrastructure context to AI agents through MCP.
     license: Apache-2.0
 
-appimages:
-  - id: nexus
-    builds: [nexus]
-    name_template: "nexus_{{ .Os }}_{{ .Arch }}"
-    description: Nexus exposes infrastructure context to AI agents through MCP.
-    homepage: https://github.com/edgeopslabs/nexus-core
-    license: Apache-2.0
-
 release:
   draft: false
   prerelease: false

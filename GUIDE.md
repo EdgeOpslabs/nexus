@@ -314,3 +314,4 @@ git push origin v0.0.1
 ```
 
 Artifacts are attached to the GitHub release with `checksums.txt`.
+AppImages are built in the release workflow and uploaded to the same release.
