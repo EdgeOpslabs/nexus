@@ -40,9 +40,8 @@ jobs:
       - name: Build AppImages
         run: |
           curl -fsSL -o appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-          curl -fsSL -o appimagetool-aarch64 https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-aarch64.AppImage
-          chmod +x appimagetool appimagetool-aarch64 ./scripts/build-appimage.sh
-          ./scripts/build-appimage.sh ./appimagetool ./appimagetool-aarch64
+          chmod +x appimagetool ./scripts/build-appimage.sh
+          ./scripts/build-appimage.sh ./appimagetool
 
       - name: Upload AppImages
         run: |

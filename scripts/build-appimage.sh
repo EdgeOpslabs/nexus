@@ -4,6 +4,7 @@ set -euo pipefail
 APPIMAGETOOL_X86="${1:-appimagetool}"
 APPIMAGETOOL_ARM="${2:-appimagetool-aarch64}"
 DIST_DIR="${DIST_DIR:-dist}"
+HOST_ARCH="$(uname -m)"
 
 build_appimage() {
   local arch="$1"
@@ -53,5 +54,13 @@ EOF
   "${tool}" "${appdir}" "${out}"
 }
 
-build_appimage "amd64" "${APPIMAGETOOL_X86}"
-build_appimage "arm64" "${APPIMAGETOOL_ARM}"
+if [[ "${HOST_ARCH}" == "x86_64" ]]; then
+  build_appimage "amd64" "${APPIMAGETOOL_X86}"
+  echo "Skipping arm64 AppImage build on x86_64 runner"
+elif [[ "${HOST_ARCH}" == "aarch64" || "${HOST_ARCH}" == "arm64" ]]; then
+  build_appimage "arm64" "${APPIMAGETOOL_ARM}"
+  echo "Skipping amd64 AppImage build on arm64 runner"
+else
+  echo "Unsupported host architecture: ${HOST_ARCH}"
+  exit 1
+fi
