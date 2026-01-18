@@ -49,3 +49,15 @@ jobs:
           gh release upload "${GITHUB_REF_NAME}" dist/*.AppImage --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update Homebrew tap (optional)
+        run: |
+          if [ -z "${HOMEBREW_TAP_TOKEN}" ]; then
+            echo "HOMEBREW_TAP_TOKEN not set; skipping tap update"
+            exit 0
+          fi
+          chmod +x ./scripts/update-homebrew-formula.sh
+          RELEASE_REPO="EdgeOpslabs/nexus" VERSION="${GITHUB_REF_NAME}" TAP_REPO="EdgeOpslabs/homebrew-nexus" ./scripts/update-homebrew-formula.sh
+        env:
+          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

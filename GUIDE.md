@@ -269,6 +269,9 @@ brew tap edgeopslabs/nexus
 brew install edgeopslabs/nexus/nexus-cli
 ```
 
+If Homebrew can’t download the asset, confirm the release assets exist under:
+`https://github.com/EdgeOpslabs/nexus/releases` and that the formula version and SHA match.
+
 Linux (Snap):
 
 ```bash
